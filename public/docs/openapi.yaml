@@ -1,0 +1,300 @@
+openapi: 3.0.3
+info:
+  title: Tesbe
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000'
+paths:
+  /api/article:
+    post:
+      summary: 'Store new article'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: recusandae
+                content:
+                  type: text
+                  description: ''
+                  example: et
+                category:
+                  type: string
+                  description: ''
+                  example: et
+                status:
+                  type: string
+                  description: '(default is draft)'
+                  example: ut
+              required:
+                - title
+                - content
+                - category
+      security: []
+    get:
+      summary: 'Get All Article'
+      description: ''
+      parameters:
+        -
+          in: query
+          name: 'page[size]'
+          description: ''
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: ''
+            example: 1
+        -
+          in: query
+          name: 'page[number]'
+          description: ''
+          example: 16
+          required: false
+          schema:
+            type: integer
+            description: ''
+            example: 16
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: success
+                  message: 'Successfully get data'
+                  data:
+                    current_page: 1
+                    data:
+                      -
+                        id: 1
+                        title: perferendisperferendisperferendisperferendisvperferendisvperferendis
+                        content: etperferendisperferendisperferendisperferendisvperferendisperferendisperferendisvvperferendisvvperferendisvperferendisperferendisvvvvperferendisvvperferendisvperferendisvvperferendisvvvperferendisvvvperferendisvperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendis
+                        category: odio
+                        status: ipsum
+                        created_at: '2022-04-19T10:43:34.000000Z'
+                        updated_at: '2022-04-19T10:43:34.000000Z'
+                    first_page_url: 'http://localhost:8000/api/article?page%5Bsize%5D=1&page%5Bnumber%5D=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost:8000/api/article?page%5Bsize%5D=1&page%5Bnumber%5D=1'
+                    next_page_url: null
+                    path: 'http://localhost:8000/api/article'
+                    per_page: 30
+                    prev_page_url: null
+                    to: 1
+                    total: 1
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: 'Successfully get data'
+                  data:
+                    type: object
+                    example:
+                      current_page: 1
+                      data:
+                        -
+                          id: 1
+                          title: perferendisperferendisperferendisperferendisvperferendisvperferendis
+                          content: etperferendisperferendisperferendisperferendisvperferendisperferendisperferendisvvperferendisvvperferendisvperferendisperferendisvvvvperferendisvvperferendisvperferendisvvperferendisvvvperferendisvvvperferendisvperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendis
+                          category: odio
+                          status: ipsum
+                          created_at: '2022-04-19T10:43:34.000000Z'
+                          updated_at: '2022-04-19T10:43:34.000000Z'
+                      first_page_url: 'http://localhost:8000/api/article?page%5Bsize%5D=1&page%5Bnumber%5D=1'
+                      from: 1
+                      last_page: 1
+                      last_page_url: 'http://localhost:8000/api/article?page%5Bsize%5D=1&page%5Bnumber%5D=1'
+                      next_page_url: null
+                      path: 'http://localhost:8000/api/article'
+                      per_page: 30
+                      prev_page_url: null
+                      to: 1
+                      total: 1
+      tags:
+        - Post
+      security: []
+  '/api/article/{id}':
+    get:
+      summary: 'Find article by id'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  message: 'Data Not Found'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  message:
+                    type: string
+                    example: 'Data Not Found'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Post
+      security: []
+    post:
+      summary: 'Update article'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Post
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: et
+                content:
+                  type: text
+                  description: ''
+                  example: ipsam
+                category:
+                  type: string
+                  description: ''
+                  example: sequi
+                status:
+                  type: string
+                  description: '(default is draft)'
+                  example: autem
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 6
+  '/api/article/delete/{id}':
+    post:
+      summary: 'Delete article'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Post
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: 14
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Post
+    description: ''
