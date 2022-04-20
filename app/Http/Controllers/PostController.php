@@ -34,7 +34,7 @@ class PostController extends Controller
                 'status' => 'failed',
                 'message' => 'Validation fails',
                 'data' => ['errors' => $validation->errors()]
-            ], 401);
+            ]);
         }
 
         try {
@@ -61,7 +61,7 @@ class PostController extends Controller
     {
         $model = QueryBuilder::for(Post::class)
             ->allowedSorts('created_at')
-            ->allowedFilters('category')
+            ->allowedFilters('status')
             ->jsonPaginate()->appends(Request()->input());
         return response()->json([
             'status' => 'success',
@@ -109,7 +109,7 @@ class PostController extends Controller
                 'status' => 'failed',
                 'message' => 'Validation fails',
                 'data' => ['errors' => $validation->errors()]
-            ], 401);
+            ]);
         }
 
         try {
