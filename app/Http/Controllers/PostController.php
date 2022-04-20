@@ -8,6 +8,7 @@ use App\Models\Post;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * @group Post
@@ -53,10 +54,15 @@ class PostController extends Controller
      * Get All Article
      * @queryParam page[size] integer
      * @queryParam page[number] integer
+     * @queryParam filter[category] string this for filtering data by category
+     * @queryParam sort string ex: sort=-created_at for descending by created_at
      */
     public function getAllArticle()
     {
-        $model = Post::jsonPaginate()->appends(Request()->input());
+        $model = QueryBuilder::for(Post::class)
+            ->allowedSorts('created_at')
+            ->allowedFilters('category')
+            ->jsonPaginate()->appends(Request()->input());
         return response()->json([
             'status' => 'success',
             'message' => 'Successfully get data',

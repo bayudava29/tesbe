@@ -22,14 +22,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: recusandae
+        example: nihil
         type: string
         custom: []
       content:
         name: content
         description: ''
         required: true
-        example: et
+        example: porro
         type: text
         custom: []
       category:
@@ -41,9 +41,9 @@ endpoints:
         custom: []
       status:
         name: status
-        description: '(default is draft)'
-        required: false
-        example: ut
+        description: ''
+        required: true
+        example: reprehenderit
         type: string
         custom: []
     responses: []
@@ -66,21 +66,470 @@ endpoints:
         name: 'page[size]'
         description: ''
         required: false
-        example: 1
+        example: 13
         type: integer
         custom: []
       'page[number]':
         name: 'page[number]'
         description: ''
         required: false
-        example: 16
+        example: 12
         type: integer
+        custom: []
+      'filter[category]':
+        name: 'filter[category]'
+        description: 'this for filtering data by category'
+        required: false
+        example: sequi
+        type: string
+        custom: []
+      sort:
+        name: sort
+        description: 'ex: sort=-created_at for descending by created_at'
+        required: false
+        example: quas
+        type: string
         custom: []
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"status":"success","message":"Successfully get data","data":{"current_page":1,"data":[{"id":1,"title":"perferendisperferendisperferendisperferendisvperferendisvperferendis","content":"etperferendisperferendisperferendisperferendisvperferendisperferendisperferendisvvperferendisvvperferendisvperferendisperferendisvvvvperferendisvvperferendisvperferendisvvperferendisvvvperferendisvvvperferendisvperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendisperferendis","category":"odio","status":"ipsum","created_at":"2022-04-19T10:43:34.000000Z","updated_at":"2022-04-19T10:43:34.000000Z"}],"first_page_url":"http:\/\/localhost:8000\/api\/article?page%5Bsize%5D=1&page%5Bnumber%5D=1","from":1,"last_page":1,"last_page_url":"http:\/\/localhost:8000\/api\/article?page%5Bsize%5D=1&page%5Bnumber%5D=1","next_page_url":null,"path":"http:\/\/localhost:8000\/api\/article","per_page":30,"prev_page_url":null,"to":1,"total":1}}'
+        status: 400
+        content: |-
+          {
+              "message": "Requested sort(s) `quas` is not allowed. Allowed sort(s) are `created_at`.",
+              "exception": "Spatie\\QueryBuilder\\Exceptions\\InvalidSortQuery",
+              "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/spatie/laravel-query-builder/src/Exceptions/InvalidSortQuery.php",
+              "line": 30,
+              "trace": [
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/spatie/laravel-query-builder/src/Concerns/SortsQuery.php",
+                      "line": 113,
+                      "function": "sortsNotAllowed",
+                      "class": "Spatie\\QueryBuilder\\Exceptions\\InvalidSortQuery",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/spatie/laravel-query-builder/src/Concerns/SortsQuery.php",
+                      "line": 31,
+                      "function": "ensureAllSortsExist",
+                      "class": "Spatie\\QueryBuilder\\QueryBuilder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/app/Http/Controllers/PostController.php",
+                      "line": 63,
+                      "function": "allowedSorts",
+                      "class": "Spatie\\QueryBuilder\\QueryBuilder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/Controller.php",
+                      "line": 54,
+                      "function": "getAllArticle",
+                      "class": "App\\Http\\Controllers\\PostController",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+                      "line": 45,
+                      "function": "callAction",
+                      "class": "Illuminate\\Routing\\Controller",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+                      "line": 239,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\ControllerDispatcher",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+                      "line": 196,
+                      "function": "runController",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 685,
+                      "function": "run",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 128,
+                      "function": "Illuminate\\Routing\\{closure}",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php",
+                      "line": 41,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php",
+                      "line": 59,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 103,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 687,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 662,
+                      "function": "runRouteWithinStack",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 628,
+                      "function": "runRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 617,
+                      "function": "dispatchToRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                      "line": 165,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 128,
+                      "function": "Illuminate\\Foundation\\Http\\{closure}",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+                      "line": 27,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php",
+                      "line": 63,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/fruitcake/laravel-cors/src/HandleCors.php",
+                      "line": 52,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Fruitcake\\Cors\\HandleCors",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/fideloper/proxy/src/TrustProxies.php",
+                      "line": 57,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Fideloper\\Proxy\\TrustProxies",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 103,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                      "line": 140,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                      "line": 109,
+                      "function": "sendRequestThroughRouter",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "line": 299,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "line": 287,
+                      "function": "callLaravelOrLumenRoute",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "line": 89,
+                      "function": "makeApiCall",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "line": 45,
+                      "function": "makeResponseCall",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "line": 35,
+                      "function": "makeResponseCallIfConditionsPass",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
+                      "line": 222,
+                      "function": "__invoke",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
+                      "line": 179,
+                      "function": "iterateThroughStrategies",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
+                      "line": 116,
+                      "function": "fetchResponses",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
+                      "line": 118,
+                      "function": "processRoute",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
+                      "line": 75,
+                      "function": "extractEndpointsInfoFromLaravelApp",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
+                      "line": 51,
+                      "function": "extractEndpointsInfoAndWriteToDisk",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php",
+                      "line": 50,
+                      "function": "get",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "line": 36,
+                      "function": "handle",
+                      "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Container/Util.php",
+                      "line": 37,
+                      "function": "Illuminate\\Container\\{closure}",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "line": 93,
+                      "function": "unwrapIfClosure",
+                      "class": "Illuminate\\Container\\Util",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "line": 37,
+                      "function": "callBoundMethod",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Container/Container.php",
+                      "line": 596,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Console/Command.php",
+                      "line": 134,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\Container",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/symfony/console/Command/Command.php",
+                      "line": 298,
+                      "function": "execute",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Console/Command.php",
+                      "line": 121,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Command\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/symfony/console/Application.php",
+                      "line": 1015,
+                      "function": "run",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/symfony/console/Application.php",
+                      "line": 299,
+                      "function": "doRunCommand",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/symfony/console/Application.php",
+                      "line": 171,
+                      "function": "doRun",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Console/Application.php",
+                      "line": 93,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php",
+                      "line": 129,
+                      "function": "run",
+                      "class": "Illuminate\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Volumes/Macbook HDD/bayu/tesbe/artisan",
+                      "line": 37,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Console\\Kernel",
+                      "type": "->"
+                  }
+              ]
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -106,7 +555,7 @@ endpoints:
         name: id
         description: ''
         required: false
-        example: 6
+        example: 15
         type: integer
         custom: []
     queryParameters: []
@@ -140,7 +589,7 @@ endpoints:
         name: id
         description: ''
         required: true
-        example: 8
+        example: 13
         type: integer
         custom: []
     queryParameters: []
@@ -149,28 +598,28 @@ endpoints:
         name: title
         description: ''
         required: false
-        example: et
+        example: tempora
         type: string
         custom: []
       content:
         name: content
         description: ''
         required: false
-        example: ipsam
+        example: rem
         type: text
         custom: []
       category:
         name: category
         description: ''
         required: false
-        example: sequi
+        example: voluptatem
         type: string
         custom: []
       status:
         name: status
-        description: '(default is draft)'
-        required: false
-        example: autem
+        description: ''
+        required: true
+        example: sit
         type: string
         custom: []
     responses: []
@@ -192,7 +641,7 @@ endpoints:
         name: id
         description: ''
         required: true
-        example: 14
+        example: 1
         type: integer
         custom: []
     queryParameters: []
